@@ -76,7 +76,7 @@ const Navbar = () => {
           <NavLink to="/">ReviewStore⭐</NavLink>
         </div>
 
-        {/* Search Bar (always visible) */}
+        {/* Search Bar */}
         <div className="flex flex-1 max-w-xs sm:max-w-md mx-4">
           <input
             type="text"
@@ -94,8 +94,20 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Desktop Right Side */}
-        <div className="hidden sm:flex items-center gap-4">
+        {/* ✅ Desktop Links + Auth */}
+        <div className="hidden sm:flex items-center gap-6">
+          {/* Nav links */}
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.name}
+              to={link.path}
+              className="hover:text-gray-200 transition-colors duration-200"
+            >
+              {link.name}
+            </NavLink>
+          ))}
+
+          {/* Auth */}
           {token ? (
             <div className="relative">
               <img
@@ -133,7 +145,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Menu Toggle */}
         <div className="sm:hidden">
           <button onClick={() => setShowMobileMenu(!showMobileMenu)}>
             {showMobileMenu ? "✖" : "☰"}
@@ -141,7 +153,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Links */}
       {showMobileMenu && (
         <div className="sm:hidden bg-blue-700 text-white flex flex-col gap-4 p-4 z-50">
           {navLinks.map((link) => (
